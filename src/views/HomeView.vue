@@ -4,9 +4,13 @@
       <div class="column">
         <div class="box has-text-centered">
           <h2 class="is-size-2">Daily</h2>
-          <router-link to="/dailyImages" class="">Images</router-link>
+          <router-link to="/dailyImages" class="">
+            <button class="button is-primary are-medium selector is-fullwidth">Images</button>
+          </router-link>
           <br />
-          <router-link to="/dailyGuess" class="">Guess</router-link>
+          <router-link to="/dailyGuess" class="">
+            <button class="button is-primary are-medium selector is-fullwidth">Properties</button>
+          </router-link>
         </div>
       </div>
       <div class="column">
@@ -30,7 +34,7 @@ export default class HomeView extends Vue { }
 </script>
 <style>
 .selector {
-  margin-top: 1rem;
-  margin-bottom: 1rem;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
 }
 </style>

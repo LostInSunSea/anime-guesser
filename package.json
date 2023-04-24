@@ -8,10 +8,16 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
+    "@algolia/autocomplete-js": "^1.8.3",
+    "algoliasearch": "^4.17.0",
     "bulma": "^0.9.4",
     "core-js": "^3.8.3",
+    "dotenv": "^16.0.3",
+    "instantsearch.css": "^8.0.0",
+    "remove-markdown": "^0.5.0",
     "vue": "^3.2.13",
     "vue-class-component": "^8.0.0-0",
+    "vue-instantsearch": "^4.8.10",
     "vue-router": "^4.0.3"
   },
   "devDependencies": {
