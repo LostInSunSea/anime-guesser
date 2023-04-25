@@ -9,6 +9,8 @@
   },
   "dependencies": {
     "@algolia/autocomplete-js": "^1.8.3",
+    "@oruga-ui/oruga-next": "^0.5.10",
+    "@oruga-ui/theme-bulma": "^0.2.9",
     "algoliasearch": "^4.17.0",
     "bulma": "^0.9.4",
     "core-js": "^3.8.3",

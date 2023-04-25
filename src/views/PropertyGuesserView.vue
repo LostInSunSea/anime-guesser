@@ -1,29 +1,38 @@
 <template>
-  <div class='propertyguesser'>
-    <h1>This is a page for guessing properties</h1>
-    <div>
-      <ais-instant-search index-name='ANI_TEST' :search-client='searchClient'>
-        <!-- Widgets -->
-        <ais-search-box />
-        <ais-hits>
-          <template v-slot:item='{ item }'>
-            <h2>{{ item.title.english }} / {{ item.title.romaji }} </h2>
-          </template>
-        </ais-hits>
-      </ais-instant-search>
+  <div class='propertyguesser container'>
+    <div class='columns'>
+      <div class='column'>
+        <h1>Guess What Anime It Is?</h1>
+      </div>
+      <div class='column is-flex is-justify-content-end'>
+        <o-field grouped group-multiline>
+          <o-switch v-model='romaji'>
+            <div v-if="romaji">Romaji</div>
+            <div v-else>English</div>
+          </o-switch>
+        </o-field>
+      </div>
     </div>
+    <AutoSearch v-bind:romaji="romaji" />
   </div>
 </template>
 
-<script>
-import algoliasearch from 'algoliasearch/lite';
-import 'instantsearch.css/themes/satellite-min.css';
+<script lang="ts">
+import AutoSearch from '@/components/AutoSearch.vue';
+import { ref } from 'vue';
 
 export default {
-  data() {
+  setup() {
+    const romaji = ref(false);
     return {
-      searchClient: algoliasearch('N5M7AHNVDM', 'ca5f2ab855730077f174ab9515bd0c9b'),
+      romaji,
     };
+  },
+  components: {
+    AutoSearch,
+  },
+  data() {
+    return {};
   },
 };
 </script>
