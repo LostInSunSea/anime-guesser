@@ -18,7 +18,7 @@
       </ais-search-box>
       <ais-hits>
         <template v-slot:item='{ item }'>
-          <div @keydown='fillTextInput(item)' @click='fillTextInput(item)'>
+          <div @keydown='fillTextInput(item)' @click='fillTextInput(item)' class="full-width">
             <div v-if='romaji'>{{ item.title.romaji }}</div>
             <div v-else>{{ item.title.english }}</div>
           </div>
@@ -48,3 +48,15 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.full-width {
+  width: 100%;
+  height: 100%;
+  padding: 1rem;
+}
+li.ais-Hits-item, li.ais-InfiniteHits-item{
+  padding: 0rem;
+}
+
+</style>
