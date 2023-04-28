@@ -151,15 +151,14 @@ export default {
           } else {
             animeInfo.genresColor = 'yellow';
           }
+        } else if (correctGenres > 0) {
+          animeInfo.genresColor = 'yellow';
         } else {
-          if (correctGenres > 0) {
-            animeInfo.genresColor = 'yellow';
-          } else {
-            animeInfo.genresColor = 'red';
-          }
+          animeInfo.genresColor = 'red';
         }
         // check voice actors
         let wrongVoiceActors = 0;
+        let correctVoiceActors = 0;
         console.log(animeInfo.characters.edges);
         console.log(this.solution.characters.edges);
         for (let i = 0; i < animeInfo.characters.edges.length; i++) {
@@ -170,17 +169,21 @@ export default {
               !== this.solution.characters.edges[j].voiceActors[0].name.full
             ) {
               wrongVoiceActors++;
+            } else {
+              correctVoiceActors++;
             }
           }
         }
         if (wrongVoiceActors === 0) {
           if (animeInfo.characters.edges.length === this.solution.characters.edges.length) {
-            animeInfo.charactersColor = 'green';
+            animeInfo.voiceActorsColor = 'green';
           } else {
-            animeInfo.charactersColor = 'yellow';
+            animeInfo.voiceActorsColor = 'yellow';
           }
+        } else if (correctVoiceActors > 0) {
+          animeInfo.voiceActorsColor = 'yellow';
         } else {
-          animeInfo.charactersColor = 'red';
+          animeInfo.voiceActorsColor = 'red';
         }
         // push to answerlist with colors
         console.log('info', animeInfo);
@@ -216,6 +219,9 @@ export default {
                   native
               }
               format
+              coverImage {
+                  medium
+              }
               averageScore
               season
               seasonYear

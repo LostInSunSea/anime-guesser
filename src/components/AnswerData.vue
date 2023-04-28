@@ -28,7 +28,7 @@
           </td>
           <td :style="{ background: show.genresColor }" >{{ show.genres }}</td>
           <td :style='{ background: show.sourceColor }'>{{ show.source }}</td>
-          <td :style='{ background: show.charactersColor }'>{{ show.characters.edges }}</td>
+          <td :style='{ background: show.voiceActorsColor }'>{{ show.characters.edges }}</td>
         </tr>
       </tbody>
     </table>
