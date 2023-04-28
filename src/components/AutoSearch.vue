@@ -16,7 +16,7 @@
               />
             </div>
             <div class='column'>
-              <button @click='debuggerTest()' class='button text-input is-link'>Guess</button>
+              <button @click='submitGuess()' class='button text-input is-link'>Guess</button>
             </div>
           </div>
           <!-- eslint-enable -->
@@ -26,8 +26,20 @@
       <ais-hits v-if='hide'>
         <template v-slot:item='{ item }'>
           <div @keydown='fillTextInput(item)' @click='fillTextInput(item)' class='full-width'>
-            <div v-if='romaji'>{{ item.title.romaji }}</div>
-            <div v-else>{{ item.title.english }}</div>
+            <div class='columns'>
+              <div class='column is-four-fifths'>
+                <div v-if='romaji'>{{ item.title.romaji }}</div>
+                <div v-else>{{ item.title.english }}</div>
+              </div>
+              <div class='column has-text-right is-one-fifth'>
+                <img
+                  width='20'
+                  height='20'
+                  src='../assets/PNG/Algolia-mark-circle-white.png'
+                  alt='Algolia Logo'
+                />
+              </div>
+            </div>
           </div>
         </template>
       </ais-hits>
@@ -49,29 +61,42 @@ export default {
       currentRefinement: '',
       selection: {},
       hide: false,
+      chosen: false,
     };
   },
   watch: {
     // see when the text input box changes
     currentRefinement() {
-      if (this.currentRefinement === '') {
+      if (this.currentRefinement === '' || JSON.stringify(this.selection) !== '{}') {
         this.hide = false;
       } else {
         this.hide = true;
+      }
+      if (!this.chosen) {
+        this.selection = {};
+      } else {
+        this.chosen = false;
       }
     },
   },
   methods: {
     fillTextInput(data) {
+      let text;
       if (this.romaji) {
-        this.currentRefinement = data.title.romaji;
+        text = data.title.romaji;
       } else {
-        this.currentRefinement = data.title.english;
+        text = data.title.english;
       }
+      this.currentRefinement = text;
       this.selection = data;
+      this.chosen = true;
     },
-    debuggerTest() {
-      console.log(this.selection);
+    submitGuess() {
+      if (JSON.stringify(this.selection) === '{}') {
+        console.log('no selection');
+        return;
+      }
+      this.$emit('submit-guess', this.selection);
     },
   },
 };
